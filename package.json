@@ -1,0 +1,55 @@
+{
+  "name": "sciTech-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renanpupin/sciTech-server.git"
+  },
+  "author": "Renan Pupin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renanpupin/sciTech-server/issues"
+  },
+  "homepage": "https://github.com/renanpupin/sciTech-server#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "aws-sdk": "^2.5.0",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "connect-timeout": "^1.7.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "jimp": "^0.2.27",
+    "jwt-simple": "^0.5.0",
+    "mailgun": "^0.5.0",
+    "mongoose": "^4.5.4",
+    "mongoose-unique-validator": "^1.0.2",
+    "morgan": "^1.7.0",
+    "multiparty": "^4.1.2",
+    "node-schedule": "^1.2.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
+    "request": "^2.75.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2",
+    "mocha": "^3.0.1",
+    "nodemon": "^1.9.2"
+  },
+  "engines": {
+    "node": "4.4.3",
+    "npm": "3.9.0"
+  }
+}

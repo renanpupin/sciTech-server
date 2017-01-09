@@ -1,0 +1,6 @@
+{
+  "name": "sciTech-server",
+  "description": "sciTech nodejs backend api",
+  "repository": "https://github.com/renanpupin/sciTech-server",
+  "keywords": ["node", "express", "sciTech", "api"]
+}
