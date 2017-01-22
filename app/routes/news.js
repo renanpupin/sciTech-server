@@ -85,20 +85,39 @@ router.put('/:id', function(req, res) {
 	}
 });
 
-
 //get all news
 router.get('/', function(req, res) {
 	
-	var page = 1;
+	var page = req.params.page !== undefined ? req.params.page : 0;
 
-	newsRepository.getAll(page, function(err, success, news){
+	newsRepository.getAll(page, function(err, success, news, pages){
 		if (!success){
 			res.json({ success: false, message: err.message });
 		}else{
-			res.json({ success: true, news: news });
+			res.json({ success: true, news: news, pages: pages });
 		}
 	});
 });
+
+//get all news by speficic category
+router.get('/category/:id/:page?', function(req, res) {
+
+	if (!req.params.id) {
+		res.json({success: false, msg: 'Please fill the fields.'});
+	} else {
+		
+		var page = req.params.page !== undefined ? req.params.page : 0;
+
+		newsRepository.getByCategory(req.params.id, page, function(err, success, news, pages){
+			if (!success){
+				res.json({ success: false, message: err.message });
+			}else{
+				res.json({ success: true, news: news, pages: pages});
+			}
+		});
+	}
+});
+
 
 //get specific news
 router.get('/:id', function(req, res) {
@@ -130,12 +149,12 @@ router.delete('/:id', function(req, res) {
 	}
 });
 
-// set a news published
+// set a news as published
 router.put('/publish/:id', function(req, res) {
 	if (!req.params.id) {
 		res.json({success: false, msg: 'Please fill the fields.'});
 	} else {
-		newsRepository.setPublished(req.params.id, req.body, function(err, success){
+		newsRepository.setPublished(req.params.id, function(err, success){
 			if (!success){
 				res.json({ success: false, message: err.message });
 			}else{

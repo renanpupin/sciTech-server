@@ -52,13 +52,23 @@ app.use(auth.initialize());
 app.get("/", function(req, res) {
   res.json({success: true, message: "SciTech API!"});
 });
-
 var userRoutes = require('./app/routes/user');
 var categoryRoutes = require('./app/routes/category');
 var newsRoutes = require('./app/routes/news');
+var notificationRoutes = require('./app/routes/notification');
 app.use('/api/user', userRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/news', newsRoutes);
+app.use('/api/notification', notificationRoutes);
+
+//------------------------------------------------------------------------------
+//seeds
+//------------------------------------------------------------------------------
+var categorySeed = require('./app/seeds/category');
+app.use('/api/seed/category', categorySeed);
+
+var newsSeed = require('./app/seeds/news');
+app.use('/api/seed/news', newsSeed);
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("Scitech server está rodando...");

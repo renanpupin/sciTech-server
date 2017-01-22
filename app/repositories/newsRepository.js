@@ -2,21 +2,47 @@ var News = require('../models/news.js');
 
 module.exports = {
     getAll: function(page, callback) {
+
+    	var itensPerPage = 10;
+		var skip = page !== undefined ? page * itensPerPage : 0;
+
+		var pages = Math.ceil(pages / itensPerPage);
+
         News
         .find()
         // .exec()
-        .then(function(categories) {
-		  	callback(null, true, categories);
+        .populate('category')
+        .then(function(news) {
+		  	callback(null, true, news, pages);
 		})
 		.catch(function(err){
 		  	console.log('error:', err);
 		  	callback(new Error(err), false, null);
 		});
     },
+    getByCategory: function(id, page, callback) {
+
+    	var itensPerPage = 10;
+		var skip = page !== undefined ? page * itensPerPage : 0;
+
+		var pages = Math.ceil(pages / itensPerPage);
+
+        News
+        .find({category: id})
+        .populate('category')
+        .then(function(news) {
+		  	callback(null, true, news, pages);
+		})
+		.catch(function(err){
+		  	console.log('error:', err);
+		  	callback(new Error(err), false, null, 0);
+		});
+    },
     get: function(id, callback) {
         
         News
         .findById(id)
+        .populate('category')
         .then(function(news) {
 		 	 callback(null, true, news);
 		})

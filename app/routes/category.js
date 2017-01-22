@@ -88,7 +88,7 @@ router.put('/:id', function(req, res) {
 //get all category
 router.get('/', function(req, res) {
 	
-	var page = 1;
+	var page = 0;
 
 	categoryRepository.getAll(page, function(err, success, category){
 		if (!success){
